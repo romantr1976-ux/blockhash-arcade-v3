@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlockHash Arcade v3.0</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Provably fair educational demo</p>
+        <h1>BLOCKHASH ARCADE v3.0</h1>
+      </div>
+      <div class="wallet">
+        <span>Balance</span>
+        <strong id="balance">...</strong>
+        <button id="resetDemoBtn" type="button">Reset</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="status-band">
+        <div>
+          <span>User</span>
+          <strong id="userBadge">loading</strong>
+        </div>
+        <div>
+          <span>Network</span>
+          <strong id="networkStatus">checking</strong>
+        </div>
+        <div>
+          <span>Mode</span>
+          <strong>No real money</strong>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2>Games</h2>
+          <p>Each bet commits to a hidden server seed and resolves from the next Bitcoin block hash.</p>
+        </div>
+        <div id="gamesGrid" class="games-grid"></div>
+      </section>
+
+      <section class="columns">
+        <div>
+          <div class="section-heading">
+            <h2>Pending Bets</h2>
+          </div>
+          <div id="pendingBets" class="feed"></div>
+        </div>
+        <div>
+          <div class="section-heading">
+            <h2>My Bets</h2>
+          </div>
+          <div id="myBets" class="feed"></div>
+        </div>
+      </section>
+
+      <section class="columns">
+        <div>
+          <div class="section-heading">
+            <h2>Leaderboard</h2>
+          </div>
+          <div id="leaderboard" class="feed"></div>
+        </div>
+        <div>
+          <div class="section-heading">
+            <h2>Public Log</h2>
+          </div>
+          <div id="publicLog" class="feed"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2>Fairness Verifier</h2>
+          <p>Paste public log data to recompute SHA256(blockHash + serverSeed + betId).</p>
+        </div>
+        <form id="verifyForm" class="verify-form">
+          <label>
+            Bet ID
+            <input id="verifyBetId" name="betId" autocomplete="off" required>
+          </label>
+          <label>
+            Block hash
+            <input id="verifyBlockHash" name="blockHash" autocomplete="off" required>
+          </label>
+          <label>
+            Server seed
+            <input id="verifyServerSeed" name="serverSeed" autocomplete="off" required>
+          </label>
+          <label>
+            Game
+            <select id="verifyGameType" name="gameType" required>
+              <option value="hex">HEX Hunter</option>
+              <option value="parity">Parity Pulse</option>
+              <option value="coin">Quantum Flip</option>
+            </select>
+          </label>
+          <label>
+            Guess
+            <input id="verifyGuess" name="guess" autocomplete="off" required>
+          </label>
+          <button type="submit">Verify</button>
+        </form>
+        <pre id="verifyResult" class="verify-result">Waiting for verification data.</pre>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
