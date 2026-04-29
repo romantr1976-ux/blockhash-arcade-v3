@@ -9,50 +9,79 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Provably fair educational demo</p>
+        <p class="eyebrow" data-i18n="eyebrow">Provably fair educational demo</p>
         <h1>BLOCKHASH ARCADE v3.0</h1>
       </div>
-      <div class="wallet">
-        <span>Balance</span>
-        <strong id="balance">...</strong>
-        <button id="resetDemoBtn" type="button">Reset</button>
+      <div class="header-tools">
+        <div class="language-switcher" aria-label="Language">
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="uk">UA</button>
+          <button type="button" data-lang="ru">RU</button>
+        </div>
+        <div class="wallet">
+          <span data-i18n="balanceLabel">Balance</span>
+          <strong id="balance">...</strong>
+          <button id="resetDemoBtn" type="button" data-i18n="reset">Reset</button>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="status-band">
         <div>
-          <span>User</span>
-          <strong id="userBadge">loading</strong>
+          <span data-i18n="user">User</span>
+          <strong id="userBadge" data-i18n="loading">loading</strong>
         </div>
         <div>
-          <span>Network</span>
-          <strong id="networkStatus">checking</strong>
+          <span data-i18n="network">Network</span>
+          <strong id="networkStatus" data-i18n="checking">checking</strong>
         </div>
         <div>
-          <span>Mode</span>
-          <strong>No real money</strong>
+          <span data-i18n="mode">Mode</span>
+          <strong data-i18n="noRealMoney">No real money</strong>
         </div>
       </section>
 
       <section>
         <div class="section-heading">
-          <h2>Games</h2>
-          <p>Each bet commits to a hidden server seed and resolves from the next Bitcoin block hash.</p>
+          <h2 data-i18n="games">Games</h2>
+          <p data-i18n="gamesIntro">Each bet commits to a hidden server seed and resolves from the next Bitcoin block hash.</p>
         </div>
-        <div id="gamesGrid" class="games-grid"></div>
+        <div class="play-layout">
+          <aside class="guide-panel" aria-labelledby="guideTitle">
+            <h2 id="guideTitle" data-i18n="guideTitle">Fair Play Guide</h2>
+            <div class="guide-step">
+              <strong data-i18n="guideDemoTitle">Demo only</strong>
+              <p data-i18n="guideDemoText">No real money, deposits or withdrawals. Credits are local demo points.</p>
+            </div>
+            <div class="guide-step">
+              <strong data-i18n="guidePlayTitle">How to play</strong>
+              <p data-i18n="guidePlayText">Pick a game, choose a stake, make a guess and wait for the next Bitcoin block.</p>
+            </div>
+            <div class="guide-step">
+              <strong data-i18n="guideFairTitle">Fairness</strong>
+              <p data-i18n="guideFairText">Every bet commits to a hidden server seed before the future block hash is known.</p>
+            </div>
+            <div class="guide-step">
+              <strong data-i18n="guideVerifyTitle">Verify</strong>
+              <p data-i18n="guideVerifyText">After resolution, public log data can be checked in the fairness verifier.</p>
+            </div>
+          </aside>
+          <div id="gamesGrid" class="games-grid"></div>
+        </div>
       </section>
 
       <section class="columns">
         <div>
           <div class="section-heading">
-            <h2>Pending Bets</h2>
+            <h2 data-i18n="pendingBets">Pending Bets</h2>
           </div>
           <div id="pendingBets" class="feed"></div>
         </div>
         <div>
           <div class="section-heading">
-            <h2>My Bets</h2>
+            <h2 data-i18n="myBets">My Bets</h2>
           </div>
           <div id="myBets" class="feed"></div>
         </div>
@@ -61,13 +90,13 @@
       <section class="columns">
         <div>
           <div class="section-heading">
-            <h2>Leaderboard</h2>
+            <h2 data-i18n="leaderboard">Leaderboard</h2>
           </div>
           <div id="leaderboard" class="feed"></div>
         </div>
         <div>
           <div class="section-heading">
-            <h2>Public Log</h2>
+            <h2 data-i18n="publicLog">Public Log</h2>
           </div>
           <div id="publicLog" class="feed"></div>
         </div>
@@ -75,24 +104,24 @@
 
       <section>
         <div class="section-heading">
-          <h2>Fairness Verifier</h2>
-          <p>Paste public log data to recompute SHA256(blockHash + serverSeed + betId).</p>
+          <h2 data-i18n="fairnessVerifier">Fairness Verifier</h2>
+          <p data-i18n="verifierIntro">Paste public log data to recompute SHA256(blockHash + serverSeed + betId).</p>
         </div>
         <form id="verifyForm" class="verify-form">
           <label>
-            Bet ID
+            <span data-i18n="betId">Bet ID</span>
             <input id="verifyBetId" name="betId" autocomplete="off" required>
           </label>
           <label>
-            Block hash
+            <span data-i18n="blockHash">Block hash</span>
             <input id="verifyBlockHash" name="blockHash" autocomplete="off" required>
           </label>
           <label>
-            Server seed
+            <span data-i18n="serverSeed">Server seed</span>
             <input id="verifyServerSeed" name="serverSeed" autocomplete="off" required>
           </label>
           <label>
-            Game
+            <span data-i18n="game">Game</span>
             <select id="verifyGameType" name="gameType" required>
               <option value="hex">HEX Hunter</option>
               <option value="parity">Parity Pulse</option>
@@ -100,12 +129,12 @@
             </select>
           </label>
           <label>
-            Guess
+            <span data-i18n="guess">Guess</span>
             <input id="verifyGuess" name="guess" autocomplete="off" required>
           </label>
-          <button type="submit">Verify</button>
+          <button type="submit" data-i18n="verify">Verify</button>
         </form>
-        <pre id="verifyResult" class="verify-result">Waiting for verification data.</pre>
+        <pre id="verifyResult" class="verify-result" data-i18n="waitingVerification">Waiting for verification data.</pre>
       </section>
     </main>
 
