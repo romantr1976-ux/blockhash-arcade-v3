@@ -60,6 +60,24 @@ Health check:
 http://localhost:3000/api/health
 ```
 
+If port `3000` is already used by another local project, start the demo on `3001` instead:
+
+```bash
+PORT=3001 npm start
+```
+
+Then open:
+
+```text
+http://localhost:3001
+```
+
+Health check:
+
+```text
+http://localhost:3001/api/health
+```
+
 ## Environment
 
 Copy `.env.example` to `.env` if you want to override defaults.
@@ -67,7 +85,7 @@ Copy `.env.example` to `.env` if you want to override defaults.
 | Variable | Default | Description |
 | --- | --- | --- |
 | `PORT` | `3000` | HTTP server port |
-| `CORS_ORIGIN` | `http://localhost:3000,http://127.0.0.1:3000` | Allowed browser origins |
+| `CORS_ORIGIN` | `http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001` | Allowed browser origins |
 | `MAX_STAKE` | `500` | Maximum stake per demo bet |
 | `MAX_PENDING_BETS` | `3` | Maximum pending bets per user |
 
