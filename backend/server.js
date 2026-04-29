@@ -64,9 +64,16 @@ app.use('/api/public-log', publicLogRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/fairness', fairnessRoutes);
 
-app.use(express.static(frontendPath));
+app.use(express.static(frontendPath, {
+  etag: false,
+  lastModified: false,
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-store');
+  }
+}));
 
 app.get('*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
